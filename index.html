@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
     <script>
         function loadMarkdown() {
-            fetch('content.md')
+            fetch('./one/content.md')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
