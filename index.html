@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Markdown Loader</title>
+    <title>Dynamic Markdown Loader with Frontmatter</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
         /* Hide content initially */
@@ -16,11 +16,30 @@
         const kassette = [
             'one/1.md',
             'two/2.md',
-            'three/3.md'
+            'two/3.md'
             // Add more paths as needed
         ];
 
+        function extractFrontmatter(markdown) {
+            const frontmatterRegex = /^---\n([\s\S]*?)\n---/;
+            const match = markdown.match(frontmatterRegex);
+            if (match) {
+                const frontmatter = match[1];
+                const metadata = {};
+                frontmatter.split('\n').forEach(line => {
+                    const [key, value] = line.split(':').map(part => part.trim());
+                    if (key) {
+                        metadata[key] = value;
+                    }
+                });
+                return metadata;
+            }
+            return {};
+        }
+
         function loadMarkdown(filePath) {
+            const parentDir = filePath.split('/')[0]; // Get the parent directory
+
             return fetch(filePath)
                 .then(response => {
                     if (!response.ok) {
@@ -29,9 +48,16 @@
                     return response.text();
                 })
                 .then(data => {
+                    const metadata = extractFrontmatter(data);
                     const converter = new showdown.Converter();
-                    const htmlContent = converter.makeHtml(data);
-                    document.getElementById('content').innerHTML += htmlContent; // Append content
+                    const htmlContent = converter.makeHtml(data.replace(/^---\n[\s\S]*?\n---/, '').trim()); // Remove frontmatter from content
+
+                    // Create a new div for this file's content
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = parentDir; // Set class to parent directory
+                    contentDiv.innerHTML = `<h2>${metadata.title || 'Untitled'}</h2>` + htmlContent; // Set title and content
+
+                    document.getElementById('content').appendChild(contentDiv); // Append the new div to the content
                 })
                 .catch(error => console.error('Error fetching markdown:', error));
         }
