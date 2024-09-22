@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load Markdown Content</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.1.2/lib/marked.umd.min.js"></script>
+    <title>Load Markdown with Showdown</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <script>
         function loadMarkdown() {
             fetch('./one/content.md')
@@ -15,8 +15,8 @@
                     return response.text();
                 })
                 .then(data => {
-                    // Convert Markdown to HTML
-                    const htmlContent = marked(data);
+                    const converter = new showdown.Converter();
+                    const htmlContent = converter.makeHtml(data);
                     document.getElementById('content').innerHTML = htmlContent;
                 })
                 .catch(error => console.error('Error fetching markdown:', error));
