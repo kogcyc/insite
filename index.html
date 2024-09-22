@@ -8,7 +8,7 @@
     <style>
         /* Hide content initially */
         #content {
-
+            display: none; /* Keep content hidden until loaded */
             padding: 20px;
         }
         .one {
@@ -20,21 +20,21 @@
         .three {
             background-color: #a1adba;
         }
-        .one,.two,.three {
+        .one, .two, .three {
             padding: 20px;
         }
     </style>
     <script>
         // Kassette holding Markdown file paths
         const kassette = [
-            'one/1.md',
-            'two/2.md',
-            'three/3.md'
-            // Add more paths as needed
+            { path: 'one/1.md', className: 'one' },
+            { path: 'two/2.md', className: 'two' },
+            { path: 'three/3.md', className: 'three' }
         ];
 
-        function loadMarkdown(filePath) {
-            const parentDir = filePath.split('/')[0]; // Get the parent directory
+        function loadMarkdown(fileObj) {
+            const filePath = fileObj.path;
+            const className = fileObj.className;
 
             return fetch(filePath)
                 .then(response => {
@@ -44,23 +44,30 @@
                     return response.text();
                 })
                 .then(data => {
-                    const converter = new showdown.Converter();
+                    const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
                     const htmlContent = converter.makeHtml(data);
+
+                    // Post-process HTML to remove IDs
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+
+                    // Remove any 'id' attributes from elements
+                    tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
                     // Create a new div for this file's content
                     const contentDiv = document.createElement('div');
-                    contentDiv.className = parentDir; // Set class to parent directory
-                    contentDiv.innerHTML = htmlContent; // Set content
-                    console.log(htmlContent);
+                    contentDiv.className = className; // Use the class name from the kassette entry
+                    contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
 
-                    document.getElementById('content').appendChild(contentDiv); // Append the new div to the content
+                    // Append the new div to the content
+                    document.getElementById('content').appendChild(contentDiv);
                 })
                 .catch(error => console.error('Error fetching markdown:', error));
         }
 
         async function loadAllMarkdowns() {
-            for (const filePath of kassette) {
-                await loadMarkdown(filePath); // Wait for each markdown to load
+            for (const fileObj of kassette) {
+                await loadMarkdown(fileObj); // Wait for each markdown to load
             }
             // Show the content after all markdowns have been loaded
             document.getElementById('content').style.display = 'block';
@@ -74,4 +81,3 @@
     <div id="content"></div>
 </body>
 </html>
-
