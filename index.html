@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Markdown Loader</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <style>
+        /* Hide content initially */
+        #content {
+            display: none;
+        }
+    </style>
     <script>
         // Kassette holding Markdown file paths
         const kassette = [
-            './one/1.md',
-            './two/2.md'
+            'one/1.md',
+            'two/2.md'
+            // Add more paths as needed
         ];
 
         function loadMarkdown(filePath) {
@@ -32,7 +39,13 @@
             kassette.forEach(filePath => loadMarkdown(filePath));
         }
 
-        window.onload = loadAllMarkdowns; // Load all Markdown files on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAllMarkdowns();
+            // Show the content after all markdowns have been loaded
+            setTimeout(() => {
+                document.getElementById('content').style.display = 'block';
+            }, 100); // Delay to ensure content is ready
+        });
     </script>
 </head>
 <body>
