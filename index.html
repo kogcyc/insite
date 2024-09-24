@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Markdown Loader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <style>
+        /* Hide content initially */
+        #content {
+            display: none; /* Keep content hidden until loaded */
+            padding: 20px;
+        }
+        .one {
+            background-color: #ef9;
+        }
+        .two {
+            background-color: #fea;
+        }
+        .three {
+            background-color: #a1adba;
+        }
+        .one, .two, .three {
+            padding: 20px;
+        }
+    </style>
+    <script>
+        // Kassette holding Markdown file paths
+        const kassette = [
+            { path: 'one/1.md', className: 'one' },
+            { path: 'two/2.md', className: 'two' },
+            { path: 'three/3.md', className: 'three' }
+        ];
+
+        function loadMarkdown(fileObj) {
+            const filePath = fileObj.path;
+            const className = fileObj.className;
+
+            return fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
+                    const htmlContent = converter.makeHtml(data);
+
+                    // Post-process HTML to remove IDs
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+
+                    // Remove any 'id' attributes from elements
+                    tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+
+                    // Create a new div for this file's content
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = className; // Use the class name from the kassette entry
+                    contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
+
+                    // Append the new div to the content
+                    document.getElementById('content').appendChild(contentDiv);
+                })
+                .catch(error => console.error('Error fetching markdown:', error));
+        }
+
+        async function loadAllMarkdowns() {
+            for (const fileObj of kassette) {
+                await loadMarkdown(fileObj); // Wait for each markdown to load
+            }
+            // Show the content after all markdowns have been loaded
+            document.getElementById('content').style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAllMarkdowns);
+    </script>
+</head>
+<body>
+    <h1>Markdown Content</h1>
+    <div id="content"></div>
+</body>
+</html>
