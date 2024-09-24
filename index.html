@@ -11,7 +11,7 @@
             display: none; /* Keep content hidden until loaded */
             padding: 20px;
         }
-        .one {
+        #one {
             background-color: #ef9;
         }
         .two {
@@ -63,7 +63,7 @@
                     const contentDiv = document.createElement('div');
                     contentDiv.className = className; // Use the class name from the kassette entry
                     contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
-                    console.log("**" + contentDiv.outerHTML);
+                    // console.log("**" + contentDiv.outerHTML);
                     
                     // Append the new div to the content
                     document.getElementById('content').appendChild(contentDiv);
@@ -71,7 +71,7 @@
                 .catch(error => console.error('Error fetching markdown:', error));
         }
 
-        async function loadAllMarkdowns() {
+        async function loadAllMarkdowns() {**
             for (const fileObj of kassette) {
                 await loadMarkdown(fileObj); // Wait for each markdown to load
             }
