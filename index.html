@@ -48,14 +48,16 @@
                 .then(data => {
                     const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
                     const htmlContent = converter.makeHtml(data);
-                    console.log(htmlContent);
+                    // console.log(htmlContent);
 
                     // Post-process HTML to remove IDs
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = htmlContent;
+                    
 
                     // Remove any 'id' attributes from elements
                     tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+                    console.log(tempDiv);
 
                     // Create a new div for this file's content
                     const contentDiv = document.createElement('div');
