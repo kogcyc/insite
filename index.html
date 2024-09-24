@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Markdown Loader</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+      body {
+        padding: 20px;
+        margin: 0px;
+        background-color: #fd8;
+        font-family: sans-serif;
+      }
+      #content {
+        display: none;
+      }
+      .logo {
+        font-family: "Supermercado One", sans-serif;
+        font-size: 42px;
+        color: #333;
+        margin-left: 1px;
+        margin-top: -6px;
+        margin-bottom: 4px;
+        letter-spacing: -2px;
+        -webkit-text-stroke: 1px #333;
+      }
+      .one {
+        background-color: #fff;
+      }
+      .two {
+        background-color: #444;
+        color: #fff;
+      }
+      .three {
+        background-color: #733;
+        color: #fff;
+      }
+      .four {
+        background-color: #485028;
+        color: #fff;
+      }
+      .one, .two, .three, .four {
+        margin-bottom: 20px;
+        border-radius: 7px;
+        padding: 4px 20px 8px 20px;
+      }
+      .error-message {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+    <script>
+      const kassette = [
+        { fn: "1.md", className: "one" },
+        { fn: "2.md", className: "two" },
+        { fn: "3.md", className: "three" },
+      ]
+
+      function loadMarkdown(fileObj) {
+        const fileName = fileObj.fn
+        const className = fileObj.className
+        const filePath = "./" + className + "/" + fileName
+
+        return fetch(filePath)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok")
+            }
+            return response.text()
+          })
+          .then((data) => {
+            const converter = new showdown.Converter({
+              headerLevelStart: 3,
+              noHeaderId: true,
+            })
+            const htmlContent = converter.makeHtml(data)
+
+            const tempDiv = document.createElement("div")
+            tempDiv.innerHTML = htmlContent
+
+            tempDiv
+              .querySelectorAll("[id]")
+              .forEach((el) => el.removeAttribute("id"))
+
+            const contentDiv = document.createElement("div")
+            contentDiv.className = className
+            contentDiv.innerHTML = tempDiv.innerHTML
+
+            document.getElementById("content").appendChild(contentDiv)
+          })
+          .catch((error) => {
+            console.error("Error fetching markdown:", error)
+            const errorDiv = document.createElement("div")
+            errorDiv.textContent = "Error loading content. Please try again later."
+            errorDiv.className = "error-message"
+            document.getElementById("content").appendChild(errorDiv)
+          })
+      }
+
+      async function loadAllMarkdowns() {
+        await Promise.all(kassette.map(loadMarkdown));
+        document.getElementById("content").style.display = "block";
+      }
+
+      document.addEventListener("DOMContentLoaded", loadAllMarkdowns)
+    </script>
+  </head>
+  <body>
+    <h1 class="logo">kogswell</h1>
+    <div id="content"></div>
+  </body>
+</html>
