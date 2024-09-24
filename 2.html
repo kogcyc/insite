@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2 Column 1 Row Grid with Dummy Images</title>
+    <title>Text and Slideshow Grid</title>
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 1fr 1fr; /* Two columns: one for text, one for slideshow */
+            gap: 20px;
+            align-items: center;
+            padding: 20px;
             width: 100%;
         }
 
-        .grid-item {
+        .text-container {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        .slideshow-container {
+            width: 100%;
+        }
+
+        .slideshow-container img {
             width: 100%;
             height: auto;
         }
@@ -20,12 +31,39 @@
 </head>
 <body>
     <div class="grid-container">
-        <div class="grid-item">
-            <img src="https://via.placeholder.com/300" alt="Dummy Image 1" class="grid-item">
+        <!-- Left Side: Text -->
+        <div class="text-container">
+            <h2>Welcome to the Slideshow</h2>
+            <p>This is an example of a two-column grid layout. The left side contains some text, while the right side contains a slideshow of images that will change every second. You can customize this layout further to suit your needs.</p>
         </div>
-        <div class="grid-item">
-            <img src="https://via.placeholder.com/300" alt="Dummy Image 2" class="grid-item">
+
+        <!-- Right Side: Slideshow -->
+        <div class="slideshow-container">
+            <img id="slideshow" src="https://via.placeholder.com/300/FF0000" alt="Slideshow">
         </div>
     </div>
+
+    <script>
+        // Image URLs for the slideshow
+        const images = [
+            "https://via.placeholder.com/300/FF0000", // Red
+            "https://via.placeholder.com/300/00FF00", // Green
+            "https://via.placeholder.com/300/0000FF", // Blue
+            "https://via.placeholder.com/300/FFFF00", // Yellow
+            "https://via.placeholder.com/300/FF00FF", // Magenta
+        ];
+
+        let currentIndex = 0;
+        const imgElement = document.getElementById("slideshow");
+
+        // Function to change the image
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length; // Loop back to the start
+            imgElement.src = images[currentIndex];
+        }
+
+        // Change image every 1 second (1000 milliseconds)
+        setInterval(changeImage, 1000);
+    </script>
 </body>
 </html>
