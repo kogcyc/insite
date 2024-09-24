@@ -36,6 +36,7 @@
             const fileName = fileObj.fn;
             const className = fileObj.className;
             const filePath = "./" + className +"/" + fileName;
+            console.log(filePath);
 
             return fetch(filePath)
                 .then(response => {
