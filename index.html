@@ -71,7 +71,7 @@
                 .catch(error => console.error('Error fetching markdown:', error));
         }
 
-        async function loadAllMarkdowns() {**
+        async function loadAllMarkdowns() {
             for (const fileObj of kassette) {
                 await loadMarkdown(fileObj); // Wait for each markdown to load
             }
