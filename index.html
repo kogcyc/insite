@@ -57,13 +57,14 @@
 
                     // Remove any 'id' attributes from elements
                     tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-                    console.log("~~" + tempDiv.innerHTML);
+                    // console.log("~~" + tempDiv.innerHTML);
 
                     // Create a new div for this file's content
                     const contentDiv = document.createElement('div');
                     contentDiv.className = className; // Use the class name from the kassette entry
                     contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
-
+                    console.log("**" + contentDiv.innerHTML);
+                    
                     // Append the new div to the content
                     document.getElementById('content').appendChild(contentDiv);
                 })
