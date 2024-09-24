@@ -27,14 +27,15 @@
     <script>
         // Kassette holding Markdown file paths
         const kassette = [
-            { path: 'one/1.md', className: 'one' },
-            { path: 'two/2.md', className: 'two' },
-            { path: 'three/3.md', className: 'three' }
+            { fn: '1.md', className: 'one' },
+            { fn: '2.md', className: 'two' },
+            { fn: '3.md', className: 'three' }
         ];
 
         function loadMarkdown(fileObj) {
-            const filePath = fileObj.path;
+            const fileName = fileObj.fn;
             const className = fileObj.className;
+            const filePath = "./" + className +"/" + fileName;
 
             return fetch(filePath)
                 .then(response => {
