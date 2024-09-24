@@ -6,7 +6,7 @@
     <title>Dynamic Markdown Loader</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
     <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
       body {
         padding: 20px;
         margin: 0px;
@@ -17,6 +17,14 @@
       #content {
         display: none; /* Keep content hidden until loaded */
       }
+      .logo {
+        font-family: "Supermercado One", sans-serif;
+        font-size: 48px;
+        color: #333;
+        margin-left: 2px;
+        letter-spacing: -2px;
+        -webkit-text-stroke: 2px #333;
+      
       .one {
         background-color: #fff;
       }
@@ -100,7 +108,7 @@
     </script>
   </head>
   <body>
-    <h1>kogswell</h1>
+    <h1 class="logo">kogswell</h1>
     <div id="content"></div>
   </body>
 </html>
