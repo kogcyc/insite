@@ -36,7 +36,7 @@
             const fileName = fileObj.fn;
             const className = fileObj.className;
             const filePath = "./" + className +"/" + fileName;
-            console.log(filePath);
+            // console.log(filePath);
 
             return fetch(filePath)
                 .then(response => {
@@ -48,6 +48,7 @@
                 .then(data => {
                     const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
                     const htmlContent = converter.makeHtml(data);
+                    console.log(htmlContent);
 
                     // Post-process HTML to remove IDs
                     const tempDiv = document.createElement('div');
