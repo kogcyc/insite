@@ -24,7 +24,7 @@ export function loadMarkdown(fileObj) {
             tempDiv.innerHTML = htmlContent;
 
             // Remove any 'id' attributes from elements for uniqueness
-            tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+            // tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
             // Create a new div to contain the processed content
             const contentDiv = document.createElement('div');
