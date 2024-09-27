@@ -18,13 +18,11 @@
     <!-- Import Showdown.js for Markdown to HTML conversion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
-    <script src="kassette.js"></script>
-
     <link rel="stylesheet" href="styles.css">
     
      <script>
 
-        // NOTE: the 'kassette' is loaded via a <script> tag in the <head> tag at the top of this page
+        import { kassette } from './kassette.js';
       
         // Function to load individual markdown files, convert them, and append to the page
         function loadMarkdown(fileObj) {
