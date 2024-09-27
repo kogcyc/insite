@@ -2,6 +2,8 @@
 
 kassette is a methodology for generating a single web page by populating it with bits of content each of which is stored in a Markdown file
 
+
+
 the file named 'kassette.js' looks like this
 
 ```javascript
@@ -28,4 +30,17 @@ it is converted to this:
 </div>
 ```
 
-project-root/ │ ├── index.html ├── kassette.js ├── kassetteLoader.js ├── kassetteClasses.css ├── styles.css ├── one/ │ └── 1.md ├── two/ │ └── 2.md ├── three/ │ └── 3.md ├── favicon-32x32.png └── apple-touch-icon.png
+root/
+├── index.html
+├── kassette.js
+├── kassetteLoader.js
+├── kassetteClasses.css
+├── styles.css
+├── one/
+│   └── 1.md
+├── two/
+│   └── 2.md
+├── three/
+│   └── 3.md
+├── favicon-32x32.png
+└── apple-touch-icon.png
