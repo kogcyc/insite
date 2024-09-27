@@ -7,7 +7,7 @@ export function loadMarkdown(fileObj) {
     let classNames = fileObj.classNames; // Get the class names for styling
 
     // If classNames are not provided, derive them from the directory of the file path
-    if (!className) {
+    if (!classNames) {
         const directory = filePath.substring(0, filePath.lastIndexOf('/'));
         classNames = directory.split('/').pop(); // Use the last part of the directory as className
     }
