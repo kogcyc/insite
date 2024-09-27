@@ -10,6 +10,7 @@ export const kassette = [
     { path: 'two/2.md', className: 'two' },
     { path: 'three/3.md', className: 'three' }
 ];
+```
 
 this is the contents of one/1.md:
 
