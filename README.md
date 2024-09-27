@@ -30,6 +30,7 @@ it is converted to this:
 </div>
 ```
 
+```
 root/
 ├── index.html
 ├── kassette.js
@@ -44,3 +45,4 @@ root/
 │   └── 3.md
 ├── favicon-32x32.png
 └── apple-touch-icon.png
+```
