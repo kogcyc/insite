@@ -1,7 +1,7 @@
 // kassetteLoader.js
 
 // Function to load individual markdown files, convert them, and append to the page
-function loadMarkdown(fileObj) {
+export function loadMarkdown(fileObj) {
     const filePath = fileObj.path; // Get the file path
     const className = fileObj.className; // Get the class name for styling
 
@@ -37,7 +37,7 @@ function loadMarkdown(fileObj) {
 }
 
 // Asynchronously load all markdown files in the order they are listed
-async function loadAllMarkdowns() {
+export async function loadAllMarkdowns() {
     // Loop through the kassette array and load each markdown file
     for (const fileObj of kassette) {
         await loadMarkdown(fileObj); // Wait for each markdown to fully load before proceeding
