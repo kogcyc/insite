@@ -76,13 +76,9 @@
     </style>
 
     <script>
-        // Kassette array holding file paths and corresponding class names for markdown files
-        const kassette = [
-            { path: 'one/1.md', className: 'one' },
-            { path: 'two/2.md', className: 'two' },
-            { path: 'three/3.md', className: 'three' }
-        ];
 
+        // NOTE: the 'kassette' is loaded via a <script> tag in the <head> tag at the top of this page
+      
         // Function to load individual markdown files, convert them, and append to the page
         function loadMarkdown(fileObj) {
             const filePath = fileObj.path; // Get the file path
