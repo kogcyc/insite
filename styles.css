@@ -1,0 +1,53 @@
+      /* Import custom Google font */
+      @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+      
+      /* Basic body styling */
+      body {
+        padding: 20px;
+        margin: 0px;
+        background-color: #fff;
+        font-family: sans-serif;
+      }
+
+      /* Initially hide the content div until markdown is fully loaded */
+      #content {
+        display: none; /* Keep content hidden until loaded */
+      }
+
+      /* Styling for the logo */
+      .logo {
+        font-family: "Supermercado One", sans-serif;
+        font-size: 42px;
+        color: #333;
+        margin-left: 1px;
+        margin-top: -6px;
+        margin-bottom: 4px;
+        letter-spacing: -2px;
+        -webkit-text-stroke: 1px #333;
+      }
+
+      /* Custom styles for different sections based on their class names */
+      .one {
+        background-color: #fd9;
+      }
+      .two {
+        background-color: #444;
+        color: #fff;
+      }
+      .three {
+        background-color: #733;
+        color: #fff;
+      }
+      .four {
+        background-color: #485028;
+        color: #fff;
+      }
+
+      /* Additional shared styles for all sections */
+      .one, .two, .three, .four {
+        margin-bottom: 20px;
+        border-radius: 9px;
+        padding: 1px 20px 8px 20px;
+      }
+
+
