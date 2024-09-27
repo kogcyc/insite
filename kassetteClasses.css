@@ -1,0 +1,23 @@
+      /* Custom styles for different sections based on their class names */
+      .one {
+        background-color: #fd9;
+      }
+      .two {
+        background-color: #444;
+        color: #fff;
+      }
+      .three {
+        background-color: #733;
+        color: #fff;
+      }
+      .four {
+        background-color: #339;
+        color: #fff;
+      }
+
+      /* Additional shared styles for all sections */
+      .one, .two, .three, .four {
+        margin-bottom: 20px;
+        border-radius: 9px;
+        padding: 1px 20px 8px 20px;
+      }
