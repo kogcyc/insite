@@ -4,7 +4,13 @@ import { kassette } from './kassette.js';
 // Function to load individual markdown files, convert them, and append to the page
 export function loadMarkdown(fileObj) {
     const filePath = fileObj.path; // Get the file path
-    const className = fileObj.className; // Get the class name for styling
+    let className = fileObj.className; // Get the class name for styling
+
+    // If className is not provided, derive it from the directory of the file path
+    if (!className) {
+        const directory = filePath.substring(0, filePath.lastIndexOf('/'));
+        className = directory.split('/').pop(); // Use the last part of the directory as className
+    }
 
     // Fetch the markdown file
     return fetch(filePath)
@@ -23,12 +29,9 @@ export function loadMarkdown(fileObj) {
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = htmlContent;
 
-            // Remove any 'id' attributes from elements for uniqueness
-            // tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-
             // Create a new div to contain the processed content
             const contentDiv = document.createElement('div');
-            contentDiv.className = className; // Assign the class from the fileObj
+            contentDiv.className = className; // Assign the class (from JSON or directory)
             contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
 
             // Append the content div to the main content area
