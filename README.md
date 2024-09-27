@@ -27,3 +27,5 @@ it is converted to this:
     <p>This is the content.</p>
 </div>
 ```
+
+project-root/ │ ├── index.html ├── kassette.js ├── kassetteLoader.js ├── kassetteClasses.css ├── styles.css ├── one/ │ └── 1.md ├── two/ │ └── 2.md ├── three/ │ └── 3.md ├── favicon-32x32.png └── apple-touch-icon.png
