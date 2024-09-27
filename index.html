@@ -52,61 +52,55 @@
     </style>
     <script>
 
-// Kassette holding Markdown file paths
-const kassette = [
-  { fn: "1.md", className: "one" },
-  { fn: "2.md", className: "two" },
-  { fn: "3.md", className: "three" },
-];
+        // Kassette holding Markdown file paths
+        const kassette = [
+            { path: 'one/1.md', className: 'one' },
+            { path: 'two/2.md', className: 'two' },
+            { path: 'three/3.md', className: 'three' }
+        ];
 
-function loadMarkdown(fileObj) {
-  const fileName = fileObj.fn;
-  const className = fileObj.className;
-  const filePath = "./" + className + "/" + fileName;
+        function loadMarkdown(fileObj) {
+            const filePath = fileObj.path;
+            const className = fileObj.className;
 
-  return fetch(filePath)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.text();
-    })
-    .then((data) => {
-      const converter = new showdown.Converter({
-        headerLevelStart: 3,
-        noHeaderId: true,
-      }); // Disable heading IDs
-      const htmlContent = converter.makeHtml(data);
+            return fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
+                    const htmlContent = converter.makeHtml(data);
 
-      // Post-process HTML to remove IDs
-      const tempDiv = document.createElement("div");
-      tempDiv.innerHTML = htmlContent;
+                    // Post-process HTML to remove IDs
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
 
-      // Create a new div for this file's content
-      const contentDiv = document.createElement("div");
-      contentDiv.className = className; // Use the class name from the kassette entry
-      contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
+                    // Remove any 'id' attributes from elements
+                    tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
-      // Append the new div to the content
-      document.getElementById("content").appendChild(contentDiv);
-    })
-    .catch((error) => console.error("Error fetching markdown:", error));
-}
+                    // Create a new div for this file's content
+                    const contentDiv = document.createElement('div');
+                    contentDiv.className = className; // Use the class name from the kassette entry
+                    contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
 
-async function loadAllMarkdowns() {
-  // Loop through the kassette array sequentially
-  for (const fileObj of kassette) {
-    try {
-      await loadMarkdown(fileObj); // Ensure each markdown is loaded before the next one starts
-    } catch (err) {
-      console.error(`Error loading ${fileObj.fn}:`, err);
-    }
-  }
+                    // Append the new div to the content
+                    document.getElementById('content').appendChild(contentDiv);
+                })
+                .catch(error => console.error('Error fetching markdown:', error));
+        }
 
-  // Display content after all markdown files are loaded
-  document.getElementById("content").style.display = "block";
-}
+        async function loadAllMarkdowns() {
+            for (const fileObj of kassette) {
+                await loadMarkdown(fileObj); // Wait for each markdown to load
+            }
+            // Show the content after all markdowns have been loaded
+            document.getElementById('content').style.display = 'block';
+        }
 
+        document.addEventListener('DOMContentLoaded', loadAllMarkdowns);
     </script>
   </head>
   <body>
