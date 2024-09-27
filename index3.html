@@ -86,6 +86,7 @@ function loadMarkdown(fileObj) {
             const contentDiv = document.createElement('div');
             contentDiv.className = className; // Use the directory portion as class name if className is not provided
             contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
+            console.log(className);
 
             // Append the content div to the main content area
             document.getElementById('content').appendChild(contentDiv);
