@@ -4,8 +4,6 @@ kassette is a method for generating a single web page by populating it with bits
 
 the file named 'kassette.js' looks like this
 
-~~~
-
 this is the contents of one/1.md:
 
 ```markdown
