@@ -1,18 +1,23 @@
 # kassette
 
-# Markdown to HTML Conversion Overview
+kassette is a method for generating a single web page by populating it with bits of content each of which is stored in a Markdown file
 
-## 1. File: `1.md`
+the file named 'kassette.js' looks like this
 
-### Markdown Content:
+~~~
+
+this is the contents of one/1.md:
 
 ```markdown
 ## Hello, world ##
 
 This is the content.
+```
+it is converted to this:
 
-
-    <div class="one">
-      <h3>Hello, world</h3>
-      <p>This is the content.</p>
-    </div>
+```HTML
+<div class="one">
+    <h3>Hello, world</h3>
+    <p>This is the content.</p>
+</div>
+```
