@@ -1,25 +1,42 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Disable caching for the page -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
+
+    <!-- Set character encoding to UTF-8 -->
     <meta charset="UTF-8" />
+    
+    <!-- Responsive meta tag to ensure proper scaling on different devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the page -->
     <title>Kogswell Cycles</title>
+
+    <!-- Import Showdown.js for Markdown to HTML conversion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+    <!-- Inline CSS -->
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+      /* Import custom Google font */
+      @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
+      
+      /* Basic body styling */
       body {
         padding: 20px;
         margin: 0px;
         background-color: #fff;
         font-family: sans-serif;
       }
-      /* Hide content initially */
+
+      /* Initially hide the content div until markdown is fully loaded */
       #content {
         display: none; /* Keep content hidden until loaded */
       }
+
+      /* Styling for the logo */
       .logo {
         font-family: "Supermercado One", sans-serif;
         font-size: 42px;
@@ -30,6 +47,8 @@
         letter-spacing: -2px;
         -webkit-text-stroke: 1px #333;
       }
+
+      /* Custom styles for different sections based on their class names */
       .one {
         background-color: #fd9;
       }
@@ -44,67 +63,80 @@
       .four {
         background-color: #485028;
         color: #fff;
-      }.one, .two, .three, .four{
-  margin-bottom: 20px;
-  border-radius: 9px;
-  padding: 1px 20px 8px 20px;
-}
-    </style>
-    <script>
+      }
 
-        // Kassette holding Markdown file paths
+      /* Additional shared styles for all sections */
+      .one, .two, .three, .four {
+        margin-bottom: 20px;
+        border-radius: 9px;
+        padding: 1px 20px 8px 20px;
+      }
+    </style>
+
+    <script>
+        // Kassette array holding file paths and corresponding class names for markdown files
         const kassette = [
             { path: 'one/1.md', className: 'one' },
             { path: 'two/2.md', className: 'two' },
             { path: 'three/3.md', className: 'three' }
         ];
 
+        // Function to load individual markdown files, convert them, and append to the page
         function loadMarkdown(fileObj) {
-            const filePath = fileObj.path;
-            const className = fileObj.className;
+            const filePath = fileObj.path; // Get the file path
+            const className = fileObj.className; // Get the class name for styling
 
+            // Fetch the markdown file
             return fetch(filePath)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error('Network response was not ok');
+                        throw new Error('Network response was not ok'); // Handle fetch error
                     }
-                    return response.text();
+                    return response.text(); // Return the markdown text
                 })
                 .then(data => {
+                    // Convert markdown to HTML using Showdown
                     const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true }); // Disable heading IDs
-                    const htmlContent = converter.makeHtml(data);
+                    const htmlContent = converter.makeHtml(data); // Convert markdown to HTML
 
-                    // Post-process HTML to remove IDs
+                    // Create a temporary div to hold the HTML content
                     const tempDiv = document.createElement('div');
                     tempDiv.innerHTML = htmlContent;
 
-                    // Remove any 'id' attributes from elements
+                    // Remove any 'id' attributes from elements for uniqueness
                     tempDiv.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
 
-                    // Create a new div for this file's content
+                    // Create a new div to contain the processed content
                     const contentDiv = document.createElement('div');
-                    contentDiv.className = className; // Use the class name from the kassette entry
+                    contentDiv.className = className; // Assign the class from the fileObj
                     contentDiv.innerHTML = tempDiv.innerHTML; // Set the processed HTML content
 
-                    // Append the new div to the content
+                    // Append the content div to the main content area
                     document.getElementById('content').appendChild(contentDiv);
                 })
-                .catch(error => console.error('Error fetching markdown:', error));
+                .catch(error => console.error('Error fetching markdown:', error)); // Log any errors during fetch
         }
 
+        // Asynchronously load all markdown files in the order they are listed
         async function loadAllMarkdowns() {
+            // Loop through the kassette array and load each markdown file
             for (const fileObj of kassette) {
-                await loadMarkdown(fileObj); // Wait for each markdown to load
+                await loadMarkdown(fileObj); // Wait for each markdown to fully load before proceeding
             }
-            // Show the content after all markdowns have been loaded
+            // Once all markdown files are loaded, show the content div
             document.getElementById('content').style.display = 'block';
         }
 
+        // Event listener to start loading markdown files when the DOM is ready
         document.addEventListener('DOMContentLoaded', loadAllMarkdowns);
     </script>
   </head>
+
   <body>
+    <!-- Page header with custom logo -->
     <h1 class="logo">kogswell</h1>
+
+    <!-- Content section where the loaded markdown will be inserted -->
     <div id="content"></div>
   </body>
 </html>
