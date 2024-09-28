@@ -1,6 +1,7 @@
       /* Import custom Google font */
       @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
-      
+      @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
       /* Basic body styling */
       body {
         padding: 20px;
