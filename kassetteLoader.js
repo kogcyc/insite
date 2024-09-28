@@ -1,6 +1,5 @@
 // Import the kassette array from kassette.js
 import { kassette } from './kassette.js';
-console.log(kassette);
 
 // Function to load individual markdown files, convert them, and append to the page
 export function loadMarkdown(fileObj) {
