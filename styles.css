@@ -1,6 +1,5 @@
       /* Import custom Google font */
-      @import url('https://fonts.googleapis.com/css2?family=Supermercado+One&display=swap');
-      @import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
       /* Basic body styling */
       body {
@@ -17,7 +16,7 @@
 
       /* Styling for the logo */
       .logo {
-        font-family: "Playwrite DE Grund", sans-serif;
+        font-family: "Pacifico", sans-serif;
         font-size: 42px;
         color: #333;
         margin-left: 1px;
