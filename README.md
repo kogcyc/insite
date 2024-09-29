@@ -43,19 +43,15 @@ HOW TO INSTALL/CONFIGURE IT
 
 Make an index.html page like this:
 
-```html
+```
 <!doctype html>
 <html lang="en">
   
   <head>
     
-    <!-- Set character encoding to UTF-8 -->
+    <!-- Usual stuff -->
     <meta charset="UTF-8" />
-    
-    <!-- Responsive meta tag to ensure proper scaling on different devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Title of the page -->
     <title>kassette</title>
 
     <!-- Import Showdown.js for Markdown to HTML conversion -->
