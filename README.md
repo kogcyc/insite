@@ -12,7 +12,7 @@ a modular single-page HTML file
 "Show me your code and I'll have no idea what it does. Show me your data and I will understand."
 ```
 
-This is the core data of <strong>kassette</strong>, the contents of a file named 'kassette.js'
+Here is the 'data' that brings understanding to <strong>kassette</strong>, the contents of the file named 'kassette.js'
 
 ```javascript
 export const kassette = [
@@ -21,7 +21,8 @@ export const kassette = [
     { path: 'three/3.md', className: 'three' }
 ];
 ```
-That JS object is a map part of a <strong>kassette</strong> directory structure that looks like this:
+
+The JavaScript object serves as a map that defines the structure of the <strong>kassette</strong> directory, which is organized as follows:
 
 ```
 root/
