@@ -9,7 +9,9 @@ a modular single-page HTML file
 - a JavaScript object named 'kassette' directs how the 'modules' are rendered
 
 ```
-"Show me your code and I'll have no idea what it does. Show me your data and I will understand."
+"Good programmers worry about data structures."
+
+    - Linux Torvalds
 ```
 
 Here is the 'data' that brings understanding to <strong>kassette</strong>, the contents of the file named 'kassette.js'
