@@ -44,7 +44,11 @@ root/
 
 ### I N S T A L L  / C O N F I G  ###
 
-Make an index.html page like this:
+The outline for installing and using <strong>kassette</strong> is to make a directory that looks something like the one shown above:
+
+- copy the kassetteLoader.js file from this repository
+- copy the kassette.js file from this repository (or make your own)
+- make an index.html page like this:
 
 ```
 <!doctype html>
