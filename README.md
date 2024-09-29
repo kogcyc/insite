@@ -21,6 +21,22 @@ export const kassette = [
     { path: 'three/3.md', className: 'three' }
 ];
 ```
+That JS object is a map part of a <strong>kassette</strong> directory structure that looks like this:
+
+```
+root/
+├── index.html
+
+├── one/
+│   └── 1.md
+├── two/
+│   └── 2.md
+├── three/
+│   └── 3.md
+├── kassette.js
+└── kassetteLoader.js
+```
+
 
 this is the contents of one/1.md:
 
