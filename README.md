@@ -42,7 +42,7 @@ root/
 └── kassetteLoader.js
 ```
 
-### I N S T A L L A T I O N / C O N F I G U R A T I O N ###
+### I N S T A L L  / C O N F I G  ###
 
 Make an index.html page like this:
 
