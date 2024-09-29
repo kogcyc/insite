@@ -3,12 +3,10 @@ a modular single-page HTML file
 <br>
 <br>
 <br>
-<strong>kassette</strong> is an attempt at making single-page HTML modular.
-What does 'modular' mean:
+<strong>kassette</strong> aims to make single-page HTML modular:
 
 - the 'modules' are Markdown files
-- there is Javascript that renders the Markdown file into HTML
-- there is also a Javascript 'object' named 'kassette' that controls that rendering process
+- a JavaScript object named 'kassette' directs how the 'modules' are rendered
 
 
 the file named 'kassette.js' looks like this
