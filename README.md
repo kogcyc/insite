@@ -1,6 +1,8 @@
 # kassette #
-the modular single-page HTML
-<br/>
+a modular single-page HTML file
+<br>
+<br>
+<br>
 kassette is a methodology for generating a single web page by populating it with bits of content each of which is stored in a Markdown file
 
 
