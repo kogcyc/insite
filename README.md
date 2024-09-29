@@ -14,7 +14,7 @@ a modular single-page HTML file
     - Linux Torvalds
 ```
 
-Here is the <strong>data stucture</strong> of kassette, a file named 'kassette.js'
+Here is the <em>data stucture</em> of kassette, a file named 'kassette.js'
 
 ```javascript
 export const kassette = [
