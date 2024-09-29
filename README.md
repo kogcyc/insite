@@ -3,8 +3,12 @@ a modular single-page HTML file
 <br>
 <br>
 <br>
-kassette is a methodology for generating a single web page by populating it with bits of content each of which is stored in a Markdown file
+<strong>kassette</strong> is an attempt at making single-page HTML modular.
+What does 'modular' mean:
 
+- the 'modules' are Markdown files
+- there is Javascript that renders the Markdown file into HTML
+- there is also a Javascript 'object' named 'kassette' that controls that rendering process
 
 
 the file named 'kassette.js' looks like this
