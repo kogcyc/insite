@@ -39,6 +39,50 @@ root/
 └── kassetteLoader.js
 ```
 
+HOW TO INSTALL/CONFIGURE IT
+
+Make an index.html page like this:
+
+```html
+<!doctype html>
+<html lang="en">
+  
+  <head>
+    
+    <!-- Set character encoding to UTF-8 -->
+    <meta charset="UTF-8" />
+    
+    <!-- Responsive meta tag to ensure proper scaling on different devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title of the page -->
+    <title>kassette</title>
+
+    <!-- Import Showdown.js for Markdown to HTML conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script
+
+    <!-- Import kassetteLoader.js as a module -->
+    <script type="module" src="kassetteLoader.js"></script>
+    
+  </head>
+
+  <body>
+
+    <!-- Content section where the rendered markdown will be inserted -->
+    <div id="content"></div>
+    
+  </body>
+
+</html>
+```
+
+
+
+
+
+
+
+
 
 this is the contents of one/1.md:
 
