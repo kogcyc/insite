@@ -8,9 +8,9 @@ a modular single-page HTML file
 - the 'modules' are Markdown files
 - a JavaScript object named 'kassette' directs how the 'modules' are rendered
 
-
-> Show me your code and I'll have no idea what it does. Show me your data and I will understand.
-
+```
+"Show me your code and I'll have no idea what it does. Show me your data and I will understand."
+```
 
 This is the core data of <strong>kassette</strong>, the contents of a file named 'kassette.js'
 
