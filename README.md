@@ -14,7 +14,7 @@ a modular single-page HTML file
     - Linux Torvalds
 ```
 
-Here is the <em>data stucture</em> of kassette, a file named 'kassette.js'
+Here is the <em>data stucture</em> of <strong>kassette</strong>, a file named 'kassette.js'
 
 ```javascript
 export const kassette = [
@@ -24,7 +24,7 @@ export const kassette = [
 ];
 ```
 
-The JavaScript object serves as a map that defines the structure of the <strong>kassette</strong> directory, which is organized as follows:
+The 'kassette' object serves as a map that defines the structure of the <strong>kassette</strong> directory, which is organized as follows:
 
 ```
 root/
