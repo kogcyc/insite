@@ -8,8 +8,11 @@ a modular single-page HTML file
 - the 'modules' are Markdown files
 - a JavaScript object named 'kassette' directs how the 'modules' are rendered
 
+THere is a bit of 'programming wisdom' that goes like this:
 
-the file named 'kassette.js' looks like this
+"Show me your code and I'll have no idea what it does. Show me your data and I will understand."
+
+So let's look at the core data of kassette, the contents of a file named 'kassette.js'
 
 ```javascript
 export const kassette = [
