@@ -26,7 +26,6 @@ That JS object is a map part of a <strong>kassette</strong> directory structure 
 ```
 root/
 ├── index.html
-
 ├── one/
 │   └── 1.md
 ├── two/
