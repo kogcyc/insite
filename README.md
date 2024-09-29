@@ -3,6 +3,9 @@ a modular single-page HTML file
 <br>
 <br>
 <br>
+
+### O V E R V I E W ###
+
 <strong>kassette</strong> aims to make single-page HTML modular:
 
 - the 'modules' are Markdown files
@@ -39,7 +42,7 @@ root/
 └── kassetteLoader.js
 ```
 
-HOW TO INSTALL/CONFIGURE IT
+### I N S T A L L A T I O N / C O N F I G U R A T I O N ###
 
 Make an index.html page like this:
 
