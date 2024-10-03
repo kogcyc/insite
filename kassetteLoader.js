@@ -2,8 +2,7 @@
 function loadMarkdown(fileObj) {
     const filePath = `${fileObj.dir}/${fileObj.fn}`; 
     let classNames = fileObj.classes || fileObj.dir; // Use directory if classes are empty
-    console.log(classNames);
-    
+
     return fetch(filePath)
         .then(response => {
             if (!response.ok) {
@@ -13,13 +12,7 @@ function loadMarkdown(fileObj) {
         })
         .then(data => {
             const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true });
-            let htmlContent = converter.makeHtml(data);
-
-            // Create the replacement link
-            const linkToPage = `<a class="hiddenLink" href="${fileObj.dir}/${fileObj.fn.replace('.md', '.html')}">link to this page</a>`;
-
-            // Replace the <div class="hiddenlink"></div> with the generated link
-            htmlContent = htmlContent.replace('<div class="hiddenlink"></div>', linkToPage);
+            const htmlContent = converter.makeHtml(data);
 
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = htmlContent;
@@ -27,9 +20,29 @@ function loadMarkdown(fileObj) {
             const contentDiv = document.createElement('div');
             contentDiv.className = classNames;
             contentDiv.innerHTML = tempDiv.innerHTML;
-            console.log(tempDiv.innerHTML);
 
             document.getElementById('content').appendChild(contentDiv);
         })
         .catch(error => console.error('Error fetching markdown:', error));
 }
+
+// Function to load all markdown files after fetching the kassette.json
+async function loadAllMarkdowns() {
+    try {
+        const response = await fetch('./kassette.json');
+        const kassette = await response.json(); // Load the JSON data
+
+        // Loop through the kassette array and load each markdown file
+        for (const fileObj of kassette) {
+            await loadMarkdown(fileObj);
+        }
+
+        // Show the content div once all markdown files are loaded
+        document.getElementById('content').style.display = 'block';
+    } catch (error) {
+        console.error('Error loading kassette.json:', error);
+    }
+}
+
+// Event listener to start loading markdown files when the DOM is ready
+document.addEventListener('DOMContentLoaded', loadAllMarkdowns);
