@@ -17,7 +17,7 @@ a modular single-page HTML file
     - Linux Torvalds
 ```
 
-Here is the <em>data stucture</em> of <strong>kassette</strong>, a JSOM file named 'kassette.json'
+Here is the <em>data stucture</em> of <strong>kassette</strong>, a JSON file named 'kassette.json'
 
 ```json
 [
