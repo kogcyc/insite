@@ -37,7 +37,7 @@ root/
 │   └── 2.md
 ├── three/
 │   └── 3.md
-├── kassette.js
+├── kassette.json
 └── kassetteLoader.js
 ```
 
