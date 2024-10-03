@@ -12,7 +12,13 @@ function loadMarkdown(fileObj) {
         })
         .then(data => {
             const converter = new showdown.Converter({ headerLevelStart: 3, noHeaderId: true });
-            const htmlContent = converter.makeHtml(data);
+            let htmlContent = converter.makeHtml(data);
+
+            // Create the replacement link
+            const linkToPage = `<a class="hiddenLink" href="${fileObj.dir}/${fileObj.fn.replace('.md', '.html')}">link to this page</a>`;
+
+            // Replace the <div class="hiddenlink"></div> with the generated link
+            htmlContent = htmlContent.replace('<div class="hiddenlink"></div>', linkToPage);
 
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = htmlContent;
@@ -25,24 +31,3 @@ function loadMarkdown(fileObj) {
         })
         .catch(error => console.error('Error fetching markdown:', error));
 }
-
-// Function to load all markdown files after fetching the kassette.json
-async function loadAllMarkdowns() {
-    try {
-        const response = await fetch('./kassette.json');
-        const kassette = await response.json(); // Load the JSON data
-
-        // Loop through the kassette array and load each markdown file
-        for (const fileObj of kassette) {
-            await loadMarkdown(fileObj);
-        }
-
-        // Show the content div once all markdown files are loaded
-        document.getElementById('content').style.display = 'block';
-    } catch (error) {
-        console.error('Error loading kassette.json:', error);
-    }
-}
-
-// Event listener to start loading markdown files when the DOM is ready
-document.addEventListener('DOMContentLoaded', loadAllMarkdowns);
