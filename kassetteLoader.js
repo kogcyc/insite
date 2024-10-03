@@ -2,7 +2,8 @@
 function loadMarkdown(fileObj) {
     const filePath = `${fileObj.dir}/${fileObj.fn}`; 
     let classNames = fileObj.classes || fileObj.dir; // Use directory if classes are empty
-
+    console.log(classNames);
+    
     return fetch(filePath)
         .then(response => {
             if (!response.ok) {
