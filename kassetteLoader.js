@@ -26,6 +26,7 @@ function loadMarkdown(fileObj) {
             const contentDiv = document.createElement('div');
             contentDiv.className = classNames;
             contentDiv.innerHTML = tempDiv.innerHTML;
+            console.log(tempDiv.innerHTML);
 
             document.getElementById('content').appendChild(contentDiv);
         })
