@@ -45,9 +45,9 @@ root/
 
 The outline for installing and using <strong>kassette</strong> is to make a directory that looks something like the one shown above:
 
-- NOTE: if you try to run this locally, you will see a CORS error, so serve it from a local HTTP server (python3 -m http.server)
+- NOTE: if you try to browse this locally, you will see a CORS error, so serve it from a local HTTP server (python3 -m http.server)
 - copy the kassetteLoader.js file from this repository
-- copy the kassette.js file from this repository (or make your own)
+- copy the kassette.json file from this repository (or make your own)
 - make an index.html page like this:
 
 ```
