@@ -16,7 +16,7 @@
       }
 
       /* Additional shared styles for all sections */
-      .one, .two, .three, .four {
+      .one, .two, .three, .four, .zoom {
         margin-bottom: 20px;
         border-radius: 9px;
         padding: 1px 20px 8px 20px;
