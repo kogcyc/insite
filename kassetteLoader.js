@@ -1,5 +1,6 @@
 // Function to load individual markdown files, convert them, and append to the page
 function loadMarkdown(fileObj) {
+    console.log('start');
     const filePath = `${fileObj.dir}/${fileObj.fn}`; 
     let classNames = fileObj.classes || fileObj.dir; // Use directory if classes are empty
 
