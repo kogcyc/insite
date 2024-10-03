@@ -19,12 +19,11 @@ a modular single-page HTML file
 
 Here is the <em>data stucture</em> of <strong>kassette</strong>, a file named 'kassette.js'
 
-```javascript
-export const kassette = [
-    { path: 'one/1.md', className: 'one' },
-    { path: 'two/2.md', className: 'two' },
-    { path: 'three/3.md', className: 'three' }
-];
+```json
+[
+    { "dir": "one", "fn": "1.md", "classes": "" },
+    { "dir": "two", "fn": "2.md", "classes": "zoom" }
+]
 ```
 
 The 'kassette' object serves as a map that defines the structure of the <strong>kassette</strong> directory, which is organized as follows:
