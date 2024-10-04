@@ -10,9 +10,7 @@
         <h1>{{ site.title }}</h1>
         <nav>
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/">{{ site.poop }}/a></li>
             </ul>
         </nav>
     </header>
@@ -22,7 +20,7 @@
     </main>
 
     <footer>
-        <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}</p>
+        <p>&copy; {{ site.time | date: "%Y" }} {{ {{ site.poop }} }}</p>
     </footer>
 </body>
 </html>
